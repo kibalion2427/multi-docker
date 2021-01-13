@@ -1,0 +1,19 @@
+language: generic
+services:
+  - docker
+before_install:
+  - docker build -t roger2427/react-test -f ./client/Dockerfile.dev ./client
+script:
+  - docker run -e CI=true roger2427/react-test npm test -- --coverage
+after_success:
+  - docker build -t roger2427/multi-client ./client
+  - docker build -t roger2427/multi-nginx ./nginx
+  - docker build -t roger2427/multi-server ./server
+  - docker build -t roger2427/multi-worker ./worker
+  # LOGIN INTO DOCKER CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #PUSH IMAGES TO DOCKER HUB
+  - docker push roger2427/multi-client
+  - docker push roger2427/multi-nginx
+  - docker push roger2427/multi-server
+  - docker push roger2427/multi-worker
