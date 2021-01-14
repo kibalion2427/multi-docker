@@ -19,7 +19,8 @@
       "name": "worker",
       "image": "roger2427/multi-worker",
       "hostname": "worker",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "nginx",
