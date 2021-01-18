@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <header>
-          <h1>FIBONACCI CALCULATOR</h1>
+          <h1>FIBONACCI CALCULATOR KUBERNETES VERSION</h1>
           <br />
           <div className="link-container">
             <Link to="/" className="App-link">
